@@ -10,20 +10,23 @@ import time
 driver = webdriver.Firefox()
 driver.get("http://heroes-wow.com/wotlk/index.php?page=login")
 
-driver.implicitly_wait(1)
-username_element = driver.find_element_by_name('username')
-password_element = driver.find_element_by_name('password')
-submit_element = driver.find_element_by_xpath('//input[@type="submit" and @value="log in"]')
-time.sleep(2)
-username_element.send_keys('test')
-password_element.send_keys('test')
-time.sleep(6)
-submit_element.click()
+try:
+    username_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, 'username')))
+    password_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, 'password')))
+    submit_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//input[@type="submit" and @value="log in"]')))
+    username_element.send_keys('test')
+    password_element.send_keys('test')
+    submit_element.click()
+
+finally:
+    pass
+
 
 driver.get('http://topg.org/server-heroes-wow-id347987')
-vote_element = driver.find_element_by_partial_link_text('Visit & Play')
+vote_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, 'Visit & Play')))
+#vote_element = driver.find_element_by_partial_link_text('Visit & Play')
 vote_element.click()
-time.sleep(2)
+handles = driver.window_handles
 
 
 
