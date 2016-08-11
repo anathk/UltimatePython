@@ -27,9 +27,10 @@ vote_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((B
 #vote_element = driver.find_element_by_partial_link_text('Visit & Play')
 vote_element.click()
 handles = driver.window_handles
-
-
-
+driver.switch_to.window(handles[-1])
+print(driver.page_source)
+last_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'button wotlk')))
+last_element.click()
 driver.close()
 
 
