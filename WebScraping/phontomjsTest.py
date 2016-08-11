@@ -28,9 +28,12 @@ vote_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((B
 vote_element.click()
 handles = driver.window_handles
 driver.switch_to.window(handles[-1])
-print(driver.page_source)
-last_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'button wotlk')))
+#print(driver.page_source)
+driver.implicitly_wait(2)
+last_element = driver.find_element_by_css_selector('a.wotlk')
+print(last_element)
+#last_element = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'button wotlk')))
 last_element.click()
-driver.close()
+#driver.close()
 
 
