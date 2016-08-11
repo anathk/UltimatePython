@@ -1,10 +1,10 @@
-import sys, re
+import sys, re, os.path
 from InstantMarkup.handlers import *
 from InstantMarkup.util import *
 from InstantMarkup.rules import *
 
 file = open('test_input.txt')
-
+outputFile = open('output.html', 'w')
 
 class Parser:
     """A Parser reads a text file, applying rules and controlling a handler."""
@@ -55,3 +55,5 @@ class BasicTextParser(Parser):
 handler = HTMLRenderer()
 parser = BasicTextParser(handler)
 parser.parse(file)
+file.close()
+outputFile.close()
