@@ -5,7 +5,7 @@ from selenium import webdriver
 import time
 
 
-#driver = webdriver.PhantomJS(executable_path="C:\\software\\phantomjs\\bin\\phantomjs.exe")
+# driver = webdriver.PhantomJS(executable_path="C:\\software\\phantomjs\\bin\\phantomjs.exe")
 
 driver = webdriver.Firefox()
 driver.get("http://heroes-wow.com/wotlk/index.php?page=login")
@@ -34,6 +34,8 @@ last_element = driver.find_element_by_css_selector('a.wotlk')
 print(last_element)
 #last_element = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'button wotlk')))
 last_element.click()
-#driver.close()
+driver.close()
+driver.quit()
+print('Done!')
 
 

@@ -6,10 +6,14 @@ import time
 import os
 import pyautogui
 
+
+
 url = 'http://lover.renren.com/600171362/lovetree?ref=love_tab'
 driver = webdriver.Chrome()
-#driver = webdriver.PhantomJS(executable_path="C:\\software\\phantomjs\\bin\\phantomjs.exe")
-#
+# driver = webdriver.PhantomJS(executable_path="C:\\software\\phantomjs\\bin\\phantomjs.exe")
+
+if os.name == 'posix':
+    driver = webdriver.PhantomJS(executable_path='/opt/phantomjs/bin/phantomjs')
 # driver.set_window_size(200, 300)
 driver.get(url)
 
@@ -20,6 +24,7 @@ try:
     username_element.send_keys('test')
     password_element.send_keys('test')
     submit_element.click()
+    # print(driver.page_source)
 
     loveTree_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, '情侣树')))
     loveTree_element.click()
