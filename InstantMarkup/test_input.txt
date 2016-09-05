@@ -1,5 +1,6 @@
 Welcome to World Wide Spam, Inc.
 
+*test emphasis*
 
 These are the corporate web pages of *World Wide Spam*, Inc. We hope
 you find your stay enjoyable, and that you will sample many of our
