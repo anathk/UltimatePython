@@ -71,3 +71,8 @@ class HTMLRenderer(Handler):
 
     def feed(self, data):
         print(data)
+
+if __name__ == "__main__":
+    print('handler')
+    handler = HTMLRenderer()
+    handler.sub('emphasis')

@@ -27,6 +27,7 @@ class Parser:
         self.handler.start('document')
         for block in blocks(file):
             for filter in self.filters:
+                content = filter.__closure__
                 block = filter(block, self.handler)
             for rule in self.rules:
                 if rule.condition(block):
