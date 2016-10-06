@@ -1,0 +1,16 @@
+import numpy
+import theano.tensor as T
+from theano import function
+
+x = T.dscalar('x')
+y = T.dscalar('y')
+z = x + y
+f = function([x, y], z)
+
+print(f(2, 4))
+
+print(numpy.allclose(f(3, 5), 8))
+
+print(type(x))
+
+print(x.type)
