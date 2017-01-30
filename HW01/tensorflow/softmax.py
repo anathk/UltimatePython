@@ -38,8 +38,10 @@ def inference(images):
 
   with tf.name_scope('softmax_linear'):
   ## ---------- YOUR CODE HERE --------------------------------------
-
-
+    w = tf.Variable(tf.random_normal([IMAGE_PIXELS, NUM_CLASSES]))
+    b = tf.Variable(tf.zeros([NUM_CLASSES]))
+    y = tf.matmul(images, w) + b
+    logits = tf.nn.relu(y)
   # ------------------------------------------------------------------
 
   return logits
@@ -56,8 +58,9 @@ def loss(logits, labels):
     loss: Loss tensor of type float.
   """
   ## ---------- YOUR CODE HERE --------------------------------------
-
-
+  one_hot_labels = tf.one_hot(labels, NUM_CLASSES, 1.0, 0.0, axis=-1)
+  cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=one_hot_labels))
+  return cross_entropy
   # ------------------------------------------------------------------
 
 
@@ -105,6 +108,7 @@ def evaluation(logits, labels):
   """
 
   ## ---------- YOUR CODE HERE --------------------------------------
-
-
+  one_hot_labels = tf.one_hot(labels, NUM_CLASSES, 1.0, 0.0, axis=-1)
+  correct_prediction = tf.equal(tf.argmax(logits, 1), tf.argmax(one_hot_labels, 1))
+  return tf.reduce_mean(tf.cast(correct_prediction, tf.float32)) * labels.get_shape().as_list()[0]
   # ------------------------------------------------------------------
