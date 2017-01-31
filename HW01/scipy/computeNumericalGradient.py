@@ -20,6 +20,15 @@ def computeNumericalGradient(J, theta):
   # respect to theta(i).
   #                
   # Hint: You will probably want to compute the elements of numgrad one at a time. 
+  eps = 1.0e-4
+  eps2 = 2*eps
+  for i in range(theta.size):
+    theta_p = theta.copy()
+    theta_n = theta.copy()
+    theta_p[i] = theta[i] + eps
+    theta_n[i] = theta[i] - eps
+
+    numgrad[i] = (J(theta_p)[0] - J(theta_n)[0]) / eps2
 
 
 

@@ -25,6 +25,7 @@ from tensorflow.examples.tutorials.mnist import mnist
 
 from softmax import softmaxCost, softmaxPredict
 from computeNumericalGradient import computeNumericalGradient
+from checkNumericalGradient import checkNumericalGradient
 
 parser = argparse.ArgumentParser('Softmax Exercise.')
 parser.add_argument('-i', '--input_data_dir',
