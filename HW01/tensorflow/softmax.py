@@ -38,10 +38,12 @@ def inference(images):
 
   with tf.name_scope('softmax_linear'):
   ## ---------- YOUR CODE HERE --------------------------------------
+    # Weights
     w = tf.Variable(tf.random_normal([IMAGE_PIXELS, NUM_CLASSES]))
+    # Bias
     b = tf.Variable(tf.zeros([NUM_CLASSES]))
-    y = tf.matmul(images, w) + b
-    logits = tf.nn.relu(y)
+    # y = xw + b
+    logits = tf.matmul(images, w) + b
   # ------------------------------------------------------------------
 
   return logits
@@ -58,9 +60,10 @@ def loss(logits, labels):
     loss: Loss tensor of type float.
   """
   ## ---------- YOUR CODE HERE --------------------------------------
+  # Need to change shape of labels in order to mach with logits.
   one_hot_labels = tf.one_hot(labels, NUM_CLASSES, 1.0, 0.0, axis=-1)
-  cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=one_hot_labels))
-  return cross_entropy
+  loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=one_hot_labels))
+  return loss
   # ------------------------------------------------------------------
 
 
@@ -108,7 +111,9 @@ def evaluation(logits, labels):
   """
 
   ## ---------- YOUR CODE HERE --------------------------------------
+  # Change the shape of labels as before to match with logits.
   one_hot_labels = tf.one_hot(labels, NUM_CLASSES, 1.0, 0.0, axis=-1)
+  # Find same results in both logits and labels, which means correct predictions.
   correct_prediction = tf.equal(tf.argmax(logits, 1), tf.argmax(one_hot_labels, 1))
-  return tf.reduce_mean(tf.cast(correct_prediction, tf.float32)) * labels.get_shape().as_list()[0]
+  return tf.reduce_sum(tf.cast(correct_prediction, tf.int32))
   # ------------------------------------------------------------------
