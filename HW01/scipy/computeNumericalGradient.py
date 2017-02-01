@@ -19,21 +19,17 @@ def computeNumericalGradient(J, theta):
   # I.e., numgrad(i) should be the (approximately) the partial derivative of J with 
   # respect to theta(i).
   #                
-  # Hint: You will probably want to compute the elements of numgrad one at a time. 
+  # Hint: You will probably want to compute the elements of numgrad one at a time.
+  # This value can be changed to smaller value.
   eps = 1.0e-4
-  eps2 = 2*eps
+
   for i in range(theta.size):
-    theta_p = theta.copy()
-    theta_n = theta.copy()
-    theta_p[i] = theta[i] + eps
-    theta_n[i] = theta[i] - eps
+    theta_previous = theta.copy()
+    theta_next = theta.copy()
+    theta_previous[i] = theta[i] + eps
+    theta_next[i] = theta[i] - eps
 
-    numgrad[i] = (J(theta_p)[0] - J(theta_n)[0]) / eps2
-
-
-
-
-
+    numgrad[i] = 0.5 * (J(theta_previous)[0] - J(theta_next)[0]) / eps
   ## ---------------------------------------------------------------
 
   return numgrad

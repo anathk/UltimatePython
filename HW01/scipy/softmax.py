@@ -26,14 +26,17 @@ def softmaxCost(theta, numClasses, inputSize, decay, data, labels):
   #  Instructions: Compute the cost and gradient for softmax regression.
   #                You need to compute thetagrad and cost.
   #                The groundTruth matrix might come in handy.
-  scores = np.dot(theta, data)
-  alpha = np.max(scores, axis=0)
+  theta_dot_data = np.dot(theta, data)
+  alpha = np.max(theta_dot_data, axis=0)
   # Avoid possible overflow problem
-  scores -= alpha
-
+  theta_dot_data -= alpha
   # softmax function
-  prob = np.exp(scores) / np.sum(np.exp(scores), axis=0)
+  prob = np.exp(theta_dot_data) / np.sum(np.exp(theta_dot_data), axis=0)
+
+  # Cost function
   cost = (-1/numCases) * np.sum(groundTruth * np.log(prob)) + (decay/2) * np.sum(theta*theta)
+
+  # Gradient function
   thetagrad = (-1/numCases) * np.dot((groundTruth - prob), data.T) + decay * theta
   # ------------------------------------------------------------------
   # Unroll the gradient matrices into a vector for the optimization function.
@@ -57,17 +60,12 @@ def softmaxPredict(theta, data):
   ## ---------- YOUR CODE HERE --------------------------------------
   #  Instructions: Compute pred using theta assuming that the labels start 
   #                from 0.
-  # (n, k) = data.shape()
-  # theta = theta.reshape(k, n)
-
-  theta_data = np.dot(theta, data)
-  alpha = np.max(theta_data, axis=0)
-  theta_data -= alpha
-  prob = np.exp(theta_data) / np.sum(np.exp(theta_data), axis=0)
+  theta_dot_data = np.dot(theta, data)
+  alpha = np.max(theta_dot_data, axis=0)
+  theta_dot_data -= alpha
+  # softmax function
+  prob = np.exp(theta_dot_data) / np.sum(np.exp(theta_dot_data), axis=0)
   pred = np.argmax(prob, axis=0)
-
-
-
   # ---------------------------------------------------------------------
 
   return pred
