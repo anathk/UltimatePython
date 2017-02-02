@@ -60,9 +60,14 @@ def loss(logits, labels):
     loss: Loss tensor of type float.
   """
   ## ---------- YOUR CODE HERE --------------------------------------
+  '''
   # Need to change shape of labels in order to mach with logits.
+  # This is another way to implement cross entropy, but there's already tf.nn.sparse_softmax_cross_entropy_with_logits
+  # so that we can avoid to implement one hot function.
   one_hot_labels = tf.one_hot(labels, NUM_CLASSES, 1.0, 0.0, axis=-1)
   loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=one_hot_labels))
+  '''
+  loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits, labels=labels))
   return loss
   # ------------------------------------------------------------------
 
@@ -111,9 +116,13 @@ def evaluation(logits, labels):
   """
 
   ## ---------- YOUR CODE HERE --------------------------------------
+  '''
   # Change the shape of labels as before to match with logits.
   one_hot_labels = tf.one_hot(labels, NUM_CLASSES, 1.0, 0.0, axis=-1)
   # Find same results in both logits and labels, which means correct predictions.
   correct_prediction = tf.equal(tf.argmax(logits, 1), tf.argmax(one_hot_labels, 1))
+  '''
+  #in_top_k returns a bool tensor that is true for the examples where the label is in to top k of all logints
+  correct_prediction = tf.nn.in_top_k(logits, labels, 1)
   return tf.reduce_sum(tf.cast(correct_prediction, tf.int32))
   # ------------------------------------------------------------------
