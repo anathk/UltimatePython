@@ -5,10 +5,17 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy import Item, Field
 
 
-class BugzillaextractItem(scrapy.Item):
+class BugzillaextractItem(Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    title = Field()
+    # bugID = Field()
+    # product = Field()
+    # component = Field()
+    # version = Field()
+    # shortDesc = Field()
+    # longDesc = Field()
+    # bugStatus = Field()
+
