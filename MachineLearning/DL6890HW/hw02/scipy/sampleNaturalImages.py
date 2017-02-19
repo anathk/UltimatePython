@@ -27,10 +27,13 @@ def sampleNaturalImages(matlab_file, numpatches):
   #  more details. As a second example, images(21:30,21:30,1) is an image
   #  patch corresponding to the pixels in the block (21,21) to (30,30) of
   #  Image 1.
-
-
-
-
+  img_rows, img_cols, numImgs = images.shape
+  for i in range(numpatches):
+    ithImg = np.random.randint(0, numImgs)
+    rowPos = np.random.randint(0, img_rows - patchsize)
+    colPos = np.random.randint(0, img_cols - patchsize)
+    patch = images[rowPos:rowPos+patchsize, colPos:colPos+patchsize, ithImg].ravel()
+    patches[:, i] = patch
   ## ---------------------------------------------------------------
   # For the autoencoder to work well we need to normalize the data
   # Specifically, since the output of the network is bounded between [0,1]
