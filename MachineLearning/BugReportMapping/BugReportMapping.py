@@ -68,7 +68,7 @@ for _ in range(2):
     #batch_xs, batch_ys = mnist.train.next_batch(100)
     sess.run(train_step, feed_dict={X: X_train_array, y_: y_train_array})
 
-  # Test trained model
+
 correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
