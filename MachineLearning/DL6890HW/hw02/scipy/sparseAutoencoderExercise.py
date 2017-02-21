@@ -47,7 +47,7 @@ parser = argparse.ArgumentParser('Sparse AutoEncoder Exercise.')
 parser.add_argument('-t', '--input_type',
                     type=str,
                     choices = ['natural', 'digits'],
-                    default='natural',
+                    default='digits',
                     help = 'Type of images used for training.')
 parser.add_argument('-i', '--input_data_dir',
                     type=str,

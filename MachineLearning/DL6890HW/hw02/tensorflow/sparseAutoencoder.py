@@ -39,17 +39,29 @@ def loss(images, visible_size, hidden_size, decay, rho, beta):
   with tf.name_scope('sparseAE'):
     ## ---------- YOUR CODE HERE --------------------------------------
     # Define Inference Variables, call first layer weights 'weights1'.
-
+    # Weights
+    weights1 = tf.Variable(tf.random_uniform([visible_size, hidden_size], minval=-r, maxval=r), name="weights1")
+    weights2 = tf.Variable(tf.random_uniform([hidden_size, visible_size], minval=-r, maxval=r), name="weights2")
+    bias1 = tf.Variable(tf.zeros([hidden_size]))
+    bias2 = tf.Variable(tf.zeros([visible_size]))
 
     # Define Inference Operations
+    a2 = tf.sigmoid(tf.add(tf.matmul(images, weights1), bias1))
+    a3 = tf.sigmoid(tf.add(tf.matmul(a2, weights2), bias2))
 
 
+    rho_hat = tf.reduce_mean(a2, axis=0)
     # Loss computations
+    # squared_error = np.sum((h - data) ** 2) / (2 * m)
+    squared_error = tf.reduce_sum(tf.reduce_mean(tf.square(a3 - images), axis=0))
+    # weight_decay = (decay / 2) * (np.sum(W1 ** 2) + np.sum(W2 ** 2))
+    weight_decay = decay * (tf.nn.l2_loss(weights1) + tf.nn.l2_loss(weights2))
+    # sparsity_term = beta * np.sum(sparse_rho * np.log(sparse_rho / rho_hat) + (1 - sparse_rho) * np.log((1 - sparse_rho) / (1 - rho_hat)))
+    sparsity_term = beta * (tf.reduce_sum(rho * tf.log(rho / rho_hat) + (1 - rho) * tf.log((1 - rho) / (1 - rho_hat))))
 
-
+    cost = squared_error + weight_decay + sparsity_term
     # ------------------------------------------------------------------
 
-    
   return cost
 
 

@@ -94,10 +94,10 @@ def sparseAutoencoderCost(theta, visibleSize, hiddenSize, decay,
 
   squared_error = np.sum((h - data) ** 2) / (2 * m)
   weight_decay = (decay / 2) * (np.sum(W1 ** 2) + np.sum(W2 ** 2))
-  sparse_term = beta * np.sum(sparse_rho * np.log(sparse_rho / rho_hat) + (1 - sparse_rho) * np.log((1 - sparse_rho) / (1 - rho_hat)))
+  sparsity_term = beta * np.sum(sparse_rho * np.log(sparse_rho / rho_hat) + (1 - sparse_rho) * np.log((1 - sparse_rho) / (1 - rho_hat)))
 
 
-  cost = squared_error + weight_decay + sparse_term
+  cost = squared_error + weight_decay + sparsity_term
 
 
   delta3 = -(data - h) * sigmoid(z3) * (1 - sigmoid(z3))

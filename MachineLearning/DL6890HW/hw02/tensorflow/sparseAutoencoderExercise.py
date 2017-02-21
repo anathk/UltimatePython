@@ -126,7 +126,7 @@ def run_training():
     weights = weights.eval(session=sess)
     # weights = sess.run(weights)
     displayNetwork(weights, file_name = 'weights-' + FLAGS.input_type + '.jpg')
-    
+
     sess.close()
 
 
@@ -144,7 +144,7 @@ if __name__ == '__main__':
   parser.add_argument(
       '--learning_rate',
       type=float,
-      default=0.001,
+      default=0.01,
       help='Initial learning rate.'
   )
   parser.add_argument(
@@ -166,7 +166,7 @@ if __name__ == '__main__':
       help='Directory to put the training data.'
   )
   FLAGS, unparsed = parser.parse_known_args()
-  
+
   parser.add_argument('--visibleSize', type=int)
   parser.add_argument('--hiddenSize', type=int)
   parser.add_argument('--rho', type=float)
@@ -184,5 +184,5 @@ if __name__ == '__main__':
     parser.parse_args(args=['--rho', '0.1'], namespace=FLAGS)
     parser.parse_args(args=['--decay', '3e-3'], namespace=FLAGS)
     parser.parse_args(args=['--beta', '3'], namespace=FLAGS)
-  
+
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
