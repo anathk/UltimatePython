@@ -27,14 +27,17 @@ def sampleNaturalImages(matlab_file, numpatches):
   #  more details. As a second example, images(21:30,21:30,1) is an image
   #  patch corresponding to the pixels in the block (21,21) to (30,30) of
   #  Image 1.
-
-
-
-
+  img_rows, img_cols, numImgs = images.shape
+  for i in range(numpatches):
+    ithImg = np.random.randint(0, numImgs)
+    rowPos = np.random.randint(0, img_rows - patchsize)
+    colPos = np.random.randint(0, img_cols - patchsize)
+    patch = images[rowPos:rowPos+patchsize, colPos:colPos+patchsize, ithImg].ravel()
+    patches[:, i] = patch
   ## ---------------------------------------------------------------
   # For the autoencoder to work well we need to normalize the data
   # Specifically, since the output of the network is bounded between [0,1]
-  # (due to the sigmoid activation function), we have to make sure 
+  # (due to the sigmoid activation function), we have to make sure
   # the range of pixel values is also bounded between [0,1]
   patches = normalizeData(patches)
 
@@ -46,8 +49,8 @@ def normalizeData(patches):
   """Squash data to [0.1, 0.9] since we use sigmoid as the activation
   function in the output layer
   """
-  
-  # Remove DC (mean of images). 
+
+  # Remove DC (mean of images).
   patches = patches - np.mean(patches, axis = 0)
 
   # Truncate to +/-3 standard deviations and scale to -1 to 1
