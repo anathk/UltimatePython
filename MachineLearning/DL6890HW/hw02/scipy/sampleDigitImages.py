@@ -28,22 +28,31 @@ def sampleDigitImages(input_data_dir, numsamples):
   # xxxx     unsigned byte   ??               pixel
   # Pixels are organized row-wise. Pixel values are 0 to 255. 0 means background (white), 255 means foreground (black).
 
-  files = [mnistfile for mnistfile in listdir(input_data_dir) if "images" in mnistfile]
-  samples = None
-  for imgfile in files:
-    with open(path.join(input_data_dir, imgfile), "r") as f:
-      magic = np.fromfile(f, dtype=np.dtype(">i4"), count=1)
-      numImags = np.fromfile(f, dtype=np.dtype(">i4"), count=1)
-      rows = np.fromfile(f, dtype=np.dtype(">i4"), count=1)
-      cols = np.fromfile(f, dtype=np.dtype(">i4"), count=1)
-      images = np.fromfile(f, dtype=np.ubyte)
-      images = images.reshape((numImags, rows * cols))
-      if samples is None:
-        samples = images.copy()
-      else:
-        samples = np.concatenate((samples, images), axis=0)
+  # --------------------------------------------------------------------------------------------------------------
+  # Manual reading, should use read method from tensorflow
 
-  samples = samples[np.random.randint(0, samples.shape[0], numsamples)]
+  # files = [mnistfile for mnistfile in listdir(input_data_dir) if "images" in mnistfile]
+  # samples = None
+  # for imgfile in files:
+  #   with open(path.join(input_data_dir, imgfile), "r") as f:
+  #     magic = np.fromfile(f, dtype=np.dtype(">i4"), count=1)
+  #     numImags = np.fromfile(f, dtype=np.dtype(">i4"), count=1)
+  #     rows = np.fromfile(f, dtype=np.dtype(">i4"), count=1)
+  #     cols = np.fromfile(f, dtype=np.dtype(">i4"), count=1)
+  #     images = np.fromfile(f, dtype=np.ubyte)
+  #     images = images.reshape((numImags, rows * cols))
+  #     if samples is None:
+  #       samples = images.copy()
+  #     else:
+  #       samples = np.concatenate((samples, images), axis=0)
+  #
+  # samples = samples[np.random.randint(0, samples.shape[0], numsamples)].transpose()
+  # --------------------------------------------------------------------------------------------------------------
+  all_data = input_data.read_data_sets(input_data_dir)
+  train_images = all_data.train.images
+  test_images = all_data.test.images
+  images = np.concatenate((train_images, test_images), axis=0)
+  samples = images[np.random.randint(0, images.shape[0], numsamples)].transpose()
 
 
   ## ---------------------------------------------------------------
@@ -52,7 +61,7 @@ def sampleDigitImages(input_data_dir, numsamples):
   # (due to the sigmoid activation function), we have to make sure 
   # the range of pixel values is also bounded between [0,1]
   
-  samples = normalizeData(samples);
+  samples = normalizeData(samples)
 
   return samples
 
@@ -75,5 +84,5 @@ def normalizeData(patches):
 
   return patches
 
-# if __name__ == "__main__":
-#   print(sampleDigitImages("../../mnist/data", 100).shape)
+if __name__ == "__main__":
+  print(sampleDigitImages("../../mnist/data", 100).shape)
