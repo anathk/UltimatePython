@@ -61,7 +61,7 @@ def sampleDigitImages(input_data_dir, numsamples):
   # (due to the sigmoid activation function), we have to make sure 
   # the range of pixel values is also bounded between [0,1]
   
-  samples = normalizeData(samples)
+  #samples = normalizeData(samples)
 
   return samples
 
