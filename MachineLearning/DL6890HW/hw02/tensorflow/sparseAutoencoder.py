@@ -40,8 +40,8 @@ def loss(images, visible_size, hidden_size, decay, rho, beta):
     ## ---------- YOUR CODE HERE --------------------------------------
     # Define Inference Variables, call first layer weights 'weights1'.
     # Weights
-    weights1 = tf.Variable(tf.random_uniform([visible_size, hidden_size], minval=-r, maxval=r), name="weights1")
-    weights2 = tf.Variable(tf.random_uniform([hidden_size, visible_size], minval=-r, maxval=r), name="weights2")
+    weights1 = tf.Variable(tf.random_uniform([visible_size, hidden_size], minval=-r, maxval=r), name='weights1')
+    weights2 = tf.Variable(tf.random_uniform([hidden_size, visible_size], minval=-r, maxval=r))
     bias1 = tf.Variable(tf.zeros([hidden_size]))
     bias2 = tf.Variable(tf.zeros([visible_size]))
 
