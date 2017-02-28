@@ -16,7 +16,7 @@ plt.savefig('figure1.jpg')
 plt.show()
 
 ##================================================================
-## Step 1a: Implement PCA to obtain U 
+## Step 1a: Implement PCA to obtain U
 #  Implement PCA to obtain the rotation matrix U, which is the eigenbasis
 #  sigma.
 
@@ -26,7 +26,7 @@ sigma = x.dot(x.T) / x.shape[1]
 u, s, v = np.linalg.svd(sigma)
 
 
-# -------------------------------------------------------- 
+# --------------------------------------------------------
 
 plt.figure(2)
 plt.plot([0, u[0, 0]], [0, u[1, 0]])
@@ -41,11 +41,11 @@ plt.show()
 #  Now, compute xRot by projecting the data on to the basis defined
 #  by U. Visualize the points by performing a scatter plot.
 
-# -------------------- YOUR CODE HERE -------------------- 
+# -------------------- YOUR CODE HERE --------------------
 
 xRot = u.T.dot(x)
 
-# -------------------------------------------------------- 
+# --------------------------------------------------------
 
 # Visualise the covariance matrix. You should see a line across the
 # diagonal against a blue background.
@@ -56,16 +56,16 @@ plt.savefig('figure3.jpg')
 plt.show()
 
 ##================================================================
-## Step 2: Reduce the number of dimensions from 2 to 1. 
+## Step 2: Reduce the number of dimensions from 2 to 1.
 #  Compute xRot again (this time projecting to 1 dimension).
-#  Then, compute xHat by projecting the xRot back onto the original axes 
+#  Then, compute xHat by projecting the xRot back onto the original axes
 #  to see the effect of dimension reduction
 
-# -------------------- YOUR CODE HERE -------------------- 
+# -------------------- YOUR CODE HERE --------------------
 
 xHat = u.dot(np.resize(xRot[0], x.shape))
 
-# -------------------------------------------------------- 
+# --------------------------------------------------------
 
 plt.figure(4)
 plt.scatter(xHat[0, :], xHat[1, :])
@@ -80,7 +80,7 @@ plt.show()
 
 epsilon = 1e-5
 
-# -------------------- YOUR CODE HERE -------------------- 
+# -------------------- YOUR CODE HERE --------------------
 
 xPCAWhite = np.diag(1 / (s + epsilon)).dot(xRot)
 
@@ -96,11 +96,11 @@ plt.show()
 ## Step 3: ZCA Whitening
 #  Compute xZCAWhite and plot the results.
 
-# -------------------- YOUR CODE HERE -------------------- 
+# -------------------- YOUR CODE HERE --------------------
 
 xZCAWhite = u.dot(xPCAWhite)
 
-# -------------------------------------------------------- 
+# --------------------------------------------------------
 
 plt.figure(6)
 plt.scatter(xZCAWhite[0, :], xZCAWhite[1, :])
