@@ -51,7 +51,7 @@ displayNetwork(x[:, randsel], file_name = 'figure7.jpg', opt_normalize = True)
 # -------------------- YOUR CODE HERE -------------------- 
 
 x_mean = x.mean(axis=1)
-x0 = (x - x_mean).reshape(-1, 1)
+x0 = (x - x_mean.reshape(-1, 1))
 
 # -------------------------------------------------------- 
 
