@@ -1,0 +1,225 @@
+ssh://zchao@tensor.cs.ohio.edu:22/home/zchao/anaconda3/envs/tensorflow/bin/python3.5 -u /home/zchao/github/UltimatePython/MachineLearning/BugReportMapping/BugReportMapping_CNN.py
+[nltk_data] Error loading stopwords: <urlopen error [Errno -3]
+[nltk_data]     Temporary failure in name resolution>
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcublas.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcudnn.so.5 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcufft.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcurand.so.8.0 locally
+0 lines processed.
+
+100 lines processed.
+
+200 lines processed.
+
+300 lines processed.
+
+400 lines processed.
+
+500 lines processed.
+
+600 lines processed.
+
+700 lines processed.
+
+800 lines processed.
+
+900 lines processed.
+
+1000 lines processed.
+
+1100 lines processed.
+
+1200 lines processed.
+
+1300 lines processed.
+
+1400 lines processed.
+
+1500 lines processed.
+
+1600 lines processed.
+
+1700 lines processed.
+
+1800 lines processed.
+
+1900 lines processed.
+
+2000 lines processed.
+
+2100 lines processed.
+
+2200 lines processed.
+
+2300 lines processed.
+
+2400 lines processed.
+
+2500 lines processed.
+
+2600 lines processed.
+
+2700 lines processed.
+
+2800 lines processed.
+
+2900 lines processed.
+
+3000 lines processed.
+
+3100 lines processed.
+
+3200 lines processed.
+
+3300 lines processed.
+
+3400 lines processed.
+
+3500 lines processed.
+
+3600 lines processed.
+
+3700 lines processed.
+
+3800 lines processed.
+
+3900 lines processed.
+
+4000 lines processed.
+
+4100 lines processed.
+
+4200 lines processed.
+
+4300 lines processed.
+
+4400 lines processed.
+
+4500 lines processed.
+
+4600 lines processed.
+
+4700 lines processed.
+
+4800 lines processed.
+
+4900 lines processed.
+
+5000 lines processed.
+
+5100 lines processed.
+
+5200 lines processed.
+
+5300 lines processed.
+
+5400 lines processed.
+
+5500 lines processed.
+
+5600 lines processed.
+
+5700 lines processed.
+
+5800 lines processed.
+
+5900 lines processed.
+
+6000 lines processed.
+
+6100 lines processed.
+
+6200 lines processed.
+
+6300 lines processed.
+
+6400 lines processed.
+
+Total 3964 lines in corpus.
+x shape: 3964, 20
+y shape: 3964, 1
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE3 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:885] Found device 0 with properties:
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.7335
+pciBusID 0000:06:00.0
+Total memory: 7.92GiB
+Free memory: 7.81GiB
+W tensorflow/stream_executor/cuda/cuda_driver.cc:590] creating context when one is currently active; existing: 0x5260560
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:885] Found device 1 with properties:
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.7335
+pciBusID 0000:05:00.0
+Total memory: 7.92GiB
+Free memory: 7.23GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:906] DMA: 0 1
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 0:   Y Y
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 1:   Y Y
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:06:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:05:00.0)
+Writing to /home/zchao/github/UltimatePython/MachineLearning/BugReportMapping/runs/1489477548
+
+W tensorflow/core/framework/op_kernel.cc:993] Invalid argument: indices[0,1] = 4918 is not in [0, 3964)
+	 [[Node: embedding/embedding_lookup = Gather[Tindices=DT_INT32, Tparams=DT_FLOAT, _class=["loc:@embedding/W"], validate_indices=true, _device="/job:localhost/replica:0/task:0/cpu:0"](embedding/W/read, _recv_input_x_0)]]
+W tensorflow/core/framework/op_kernel.cc:993] Invalid argument: indices[0,1] = 4918 is not in [0, 3964)
+	 [[Node: embedding/embedding_lookup = Gather[Tindices=DT_INT32, Tparams=DT_FLOAT, _class=["loc:@embedding/W"], validate_indices=true, _device="/job:localhost/replica:0/task:0/cpu:0"](embedding/W/read, _recv_input_x_0)]]
+Traceback (most recent call last):
+  File "/home/zchao/anaconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1022, in _do_call
+    return fn(*args)
+  File "/home/zchao/anaconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1004, in _run_fn
+    status, run_metadata)
+  File "/home/zchao/anaconda3/envs/tensorflow/lib/python3.5/contextlib.py", line 66, in __exit__
+    next(self.gen)
+  File "/home/zchao/anaconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/framework/errors_impl.py", line 466, in raise_exception_on_not_ok_status
+    pywrap_tensorflow.TF_GetCode(status))
+tensorflow.python.framework.errors_impl.InvalidArgumentError: indices[0,1] = 4918 is not in [0, 3964)
+	 [[Node: embedding/embedding_lookup = Gather[Tindices=DT_INT32, Tparams=DT_FLOAT, _class=["loc:@embedding/W"], validate_indices=true, _device="/job:localhost/replica:0/task:0/cpu:0"](embedding/W/read, _recv_input_x_0)]]
+	 [[Node: beta2_power/read/_35 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/gpu:0", send_device="/job:localhost/replica:0/task:0/cpu:0", send_device_incarnation=1, tensor_name="edge_274_beta2_power/read", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/gpu:0"]()]]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/zchao/github/UltimatePython/MachineLearning/BugReportMapping/BugReportMapping_CNN.py", line 202, in <module>
+    train_step(x_batch, y_batch, current_step)
+  File "/home/zchao/github/UltimatePython/MachineLearning/BugReportMapping/BugReportMapping_CNN.py", line 170, in train_step
+    feed_dict)
+  File "/home/zchao/anaconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 767, in run
+    run_metadata_ptr)
+  File "/home/zchao/anaconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 965, in _run
+    feed_dict_string, options, run_metadata)
+  File "/home/zchao/anaconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1015, in _do_run
+    target_list, options, run_metadata)
+  File "/home/zchao/anaconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1035, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.InvalidArgumentError: indices[0,1] = 4918 is not in [0, 3964)
+	 [[Node: embedding/embedding_lookup = Gather[Tindices=DT_INT32, Tparams=DT_FLOAT, _class=["loc:@embedding/W"], validate_indices=true, _device="/job:localhost/replica:0/task:0/cpu:0"](embedding/W/read, _recv_input_x_0)]]
+	 [[Node: beta2_power/read/_35 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/gpu:0", send_device="/job:localhost/replica:0/task:0/cpu:0", send_device_incarnation=1, tensor_name="edge_274_beta2_power/read", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/gpu:0"]()]]
+
+Caused by op 'embedding/embedding_lookup', defined at:
+  File "/home/zchao/github/UltimatePython/MachineLearning/BugReportMapping/BugReportMapping_CNN.py", line 131, in <module>
+    l2_reg_lambda=l2_reg_lambda)
+  File "/home/zchao/github/UltimatePython/MachineLearning/BugReportMapping/TextCNN.py", line 32, in __init__
+    self.embedded_chars = tf.nn.embedding_lookup(W, self.input_x)
+  File "/home/zchao/anaconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/ops/embedding_ops.py", line 111, in embedding_lookup
+    validate_indices=validate_indices)
+  File "/home/zchao/anaconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/ops/gen_array_ops.py", line 1359, in gather
+    validate_indices=validate_indices, name=name)
+  File "/home/zchao/anaconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/framework/op_def_library.py", line 763, in apply_op
+    op_def=op_def)
+  File "/home/zchao/anaconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 2327, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/home/zchao/anaconda3/envs/tensorflow/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 1226, in __init__
+    self._traceback = _extract_stack()
+
+InvalidArgumentError (see above for traceback): indices[0,1] = 4918 is not in [0, 3964)
+	 [[Node: embedding/embedding_lookup = Gather[Tindices=DT_INT32, Tparams=DT_FLOAT, _class=["loc:@embedding/W"], validate_indices=true, _device="/job:localhost/replica:0/task:0/cpu:0"](embedding/W/read, _recv_input_x_0)]]
+	 [[Node: beta2_power/read/_35 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/gpu:0", send_device="/job:localhost/replica:0/task:0/cpu:0", send_device_incarnation=1, tensor_name="edge_274_beta2_power/read", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/gpu:0"]()]]
+
+
+Process finished with exit code 1
