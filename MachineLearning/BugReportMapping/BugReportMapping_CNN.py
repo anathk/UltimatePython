@@ -96,10 +96,10 @@ vocab_processor_x = learn.preprocessing.VocabularyProcessor(max_document_length_
 #x= countVectorizer.fit_transform(corpus).toarray()
 x = np.array(list(vocab_processor_x.fit_transform(corpus)))
 
-#y = countVectorizer.fit_transform(labels).toarray()
+y = countVectorizer.fit_transform(labels).toarray()
 
-vocab_processor_y = learn.preprocessing.VocabularyProcessor(max_document_length_y)
-y = np.array(list(vocab_processor_y.fit_transform(labels)))
+# vocab_processor_y = learn.preprocessing.VocabularyProcessor(max_document_length_y)
+# y = np.array(list(vocab_processor_y.fit_transform(labels)))
 
 print('x shape: %d, %d' % x.shape)
 print('y shape: %d, %d' % y.shape)
@@ -124,7 +124,7 @@ with tf.Graph().as_default():
         cnn = TextCNN(
             sequence_length=x_train.shape[1],
             num_classes=y_train.shape[1],
-            vocab_size=len(x),
+            vocab_size=len(vocab_processor_x.vocabulary_),
             embedding_size=embedding_dim,
             filter_sizes=list(map(int, filter_sizes.split(","))),
             num_filters=num_filters,
