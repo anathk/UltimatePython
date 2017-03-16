@@ -23,5 +23,20 @@ def computeNumericalGradient(J, theta):
   # Hint: You will probably want to compute the elements of numgrad one at a time. 
 
   ## ---------------------------------------------------------------
+  # Need to convert theta to float array, otherwise value will be rounded to integers.
+  numgrad = numgrad.astype(float)
+  theta = theta.astype(float)
+
+  # delta(y) / delta(x) = f(x + step) - f(x - step) / 2*step.
+  step = 0.0001
+
+  for i in range(theta.size):
+    theta_previous = theta.copy()
+    theta_next = theta.copy()
+    theta_previous[i] = theta_previous[i] + step
+    theta_next[i] = theta_next[i] - step
+
+    numgrad[i] = (J(theta_previous)[0] - J(theta_next)[0]) / (2 * step)
+    ## ---------------------------------------------------------------
 
   return numgrad

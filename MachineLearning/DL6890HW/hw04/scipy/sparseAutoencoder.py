@@ -45,7 +45,37 @@ def sparseAutoencoderCost(theta, visibleSize, hiddenSize, decay,
   # 
   # Stated differently, if we were using batch gradient descent to optimize the parameters,
   # the gradient descent update to W1 would be W1 := W1 - alpha * W1grad, and similarly for W2, b1, b2. 
-  # 
+  #
+  # shape(data, 1) % 64
+  # shape(W1)   % 25 64
+  # shape(W2)   % 64 25
+  # shape(b1)   % 25  1
+  # shape(b2)   % 64  1
+  n, m = data.shape
+
+  # Feed forward
+  z2 = np.dot(W1, data) + np.tile(b1, (m, 1)).transpose()
+  a2 = sigmoid(z2)
+  z3 = np.dot(W2, a2) + np.tile(b2, (m, 1)).transpose()
+  h = sigmoid(z3)
+
+  sparse_rho = np.tile(rho, hiddenSize)
+  rho_hat = np.sum(a2, axis=1) / m
+  sparse_delta = np.tile(-sparse_rho / rho_hat + (1 - sparse_rho) / (1 - rho_hat), (m, 1)).transpose()
+
+  squared_error = np.sum((h - data) ** 2) / (2 * m)
+  weight_decay = (decay / 2) * (np.sum(W1 ** 2) + np.sum(W2 ** 2))
+  sparsity_term = beta * np.sum(
+    sparse_rho * np.log(sparse_rho / rho_hat) + (1 - sparse_rho) * np.log((1 - sparse_rho) / (1 - rho_hat)))
+
+  cost = squared_error + weight_decay + sparsity_term
+
+  delta3 = -(data - h) * sigmoid(z3) * (1 - sigmoid(z3))
+  delta2 = (np.dot(W2.transpose(), delta3) + beta * sparse_delta) * sigmoid(z2) * (1 - sigmoid(z2))
+  W1grad = np.dot(delta2, data.transpose()) / m + decay * W1
+  W2grad = np.dot(delta3, a2.transpose()) / m + decay * W2
+  b1grad = np.sum(delta2, axis=1) / m
+  b2grad = np.sum(delta3, axis=1) / m
 
 
   #-------------------------------------------------------------------
