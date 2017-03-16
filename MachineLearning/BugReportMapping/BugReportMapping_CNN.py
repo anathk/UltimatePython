@@ -107,9 +107,9 @@ print('y shape: %d, %d' % y.shape)
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
 
 num_filters = 128
-l2_reg_lambda = 0.03
-dropout_keep_prob = 0.5
-batch_size = 4
+l2_reg_lambda = 0.001
+dropout_keep_prob = 0.7
+batch_size = 10
 num_epochs = 100
 evaluate_every = 100
 embedding_dim = 128
