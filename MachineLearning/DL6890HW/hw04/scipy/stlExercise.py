@@ -44,14 +44,13 @@ import trainSoftmax
 from feedForwardAutoencoder import feedForwardAutoencoder
 from softmax import softmaxPredict
 
-
 # Set parameters for Sparse Autoencoder
 parser = argparse.ArgumentParser('Sparse AutoEncoder Exercise.')
 parser.add_argument('-t', '--input_type',
                     type=str,
-                    choices = ['natural', 'digits'],
+                    choices=['natural', 'digits'],
                     default='digits',
-                    help = 'Type of images used for training.')
+                    help='Type of images used for training.')
 parser.add_argument('-i', '--input_data_dir',
                     type=str,
                     default='../mnist/data',
@@ -75,27 +74,26 @@ parser.add_argument('--visibleSize',
                     type=int,
                     default=str(28 * 28),
                     help='Used for gradient checking.')
-parser.add_argument('--hiddenSize', 
+parser.add_argument('--hiddenSize',
                     type=int,
                     default='200',
                     help='neuron number of hidden layer.')
-parser.add_argument('--rho', 
+parser.add_argument('--rho',
                     type=float,
                     default='0.1',
                     help='Sparsity parameter.')
-parser.add_argument('--decay', 
+parser.add_argument('--decay',
                     type=float,
                     default='3e-3',
                     help='Penalty weight for regularization.')
-parser.add_argument('--beta', 
-                    type = float,
+parser.add_argument('--beta',
+                    type=float,
                     default='3',
                     help='Panalty weight for sparsity.')
- 
+
 FLAGS = None
 FLAGS, unparsed = parser.parse_known_args()
 
- 
 # ======================================================================
 #  STEP 1: Load data from the MNIST database
 #
@@ -127,12 +125,12 @@ train_images = labeled_images[0:num_train, :]
 train_labels = labeled_labels[0:num_train]
 
 # Second half of the 0 - 4 digits dataset is used for testing.
-test_images  = labeled_images[num_train:, :]
-test_labels  = labeled_labels[num_train:]
+test_images = labeled_images[num_train:, :]
+test_labels = labeled_labels[num_train:]
 
 # Print some statistics.
 print()
-print(20 * '*', 'examples in unlabeled set', 20 * '*') 
+print(20 * '*', 'examples in unlabeled set', 20 * '*')
 print(unlabeled_images.shape[0])
 print()
 print(20 * '*', 'examples in supervised training set', 20 * '*')
@@ -151,16 +149,15 @@ trainAutoencoder.run_training(FLAGS, unlabeled_images)
 
 # ======================================================================
 #  STEP 3: Extract Features from the Supervised Dataset
-#  
+#
 #  You need to complete the code in feedForwardAutoencoder.py and use it
 #  here to extract features from train and test images.
 
 
 # ----------------- YOUR CODE HERE ----------------------
 
-trainFeatures =
-
-testFeatures = 
+train_features = feedForwardAutoencoder(FLAGS, train_images)
+test_features = feedForwardAutoencoder(FLAGS, test_images)
 
 # ======================================================================
 #  STEP 4: Train the softmax classifier
@@ -175,13 +172,15 @@ FLAGS.decay = 1e-4
 theta = trainSoftmax.run_training(FLAGS, train_features, train_labels)
 
 # ======================================================================
-#  STEP 4: Testing 
+#  STEP 4: Testing
 #
 # ----------------- YOUR CODE HERE ----------------------
 # Compute accuracy of predictions on the test set (testFeatures) using
 # softmax. You will have to implement softmaxPredict in softmax.py.
 
-acc = 
+correct = softmaxPredict(saver_path, test_features, test_labels)
+total = test_labels.shape[0]
+acc = correct/total
 
 # Print classification accuracy.
 print(20 * '*', 'the accuracy of the trained model', 20 * '*')
@@ -194,4 +193,3 @@ print()
 #
 # Accuracy: 98.2%
 #
-

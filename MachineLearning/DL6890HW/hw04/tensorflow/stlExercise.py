@@ -141,8 +141,8 @@ saver_path = trainAutoencoder.run_training(FLAGS, unlabeled_images)
 #  Use feedForwardAutoencoder to extract featuers from train and test images
 #  You need to complete the code in feedForwardAutoencoder.py.
 
-train_features = 
-test_features = 
+train_features = feedForwardAutoencoder(saver_path, train_images)
+test_features = feedForwardAutoencoder(saver_path, test_images)
 
 # ======================================================================
 #  STEP 4: Train the softmax classifier
@@ -169,7 +169,9 @@ saver_path = trainSoftmax.run_training(FLAGS, train_set, test_set)
 # ----------------- YOUR CODE HERE ----------------------
 # Compute accuracy of predictions on the test set (testFeatures) using the
 # softmaxModel saved in 'saver_path'. Use softmaxPredict() from softmax.py.
-acc = 
+correct = softmax.softmaxPredict(saver_path, test_features, test_labels)
+total = test_labels.shape[0]
+acc = correct/total
 
 # Classification Score
 print()

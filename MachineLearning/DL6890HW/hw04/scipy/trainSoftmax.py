@@ -45,7 +45,7 @@ def run_training(FLAGS, images, labels):
     # First, lets make sure your numerical gradient computation is correct for a
     # simple function.  After you have implemented computeNumericalGradient.py,
     # run the following: 
-    checkNumericalGradient()
+    #checkNumericalGradient()
   
     numGrad = computeNumericalGradient(lambda x: softmaxCost(x, numClasses, inputSize, decay, images, labels),
                                        theta)

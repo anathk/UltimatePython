@@ -38,10 +38,12 @@ def inference(images):
   # Linear
   with tf.name_scope('softmax_linear'):
   ## ---------- YOUR CODE HERE --------------------------------------
+    W = tf.Variable(tf.zeros([FEATURE_SIZE, NUM_CLASSES]))
+    b = tf.Variable(tf.zeros([NUM_CLASSES]))
+    logits = tf.matmul(images, W) + b
 
-
-
-
+    tf.add_to_collection('softmax_linear', W)
+    tf.add_to_collection('softmax_linear', b)
   # ------------------------------------------------------------------
   return logits
 
@@ -58,7 +60,8 @@ def loss(logits, labels):
   """
   ## ---------- YOUR CODE HERE --------------------------------------
 
-
+  cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits = logits,labels= labels)
+  loss = tf.reduce_mean(cross_entropy)
 
   # ------------------------------------------------------------------
   return loss

@@ -22,7 +22,7 @@ def feedForwardAutoencoder(saver_path, images):
       ##---------------------- YOUR CODE HERE -------------------------
       #  Use the restored parameters to compute the features for each
       #  image in images.
-      features = 
+      features = tf.transpose(tf.sigmoid(tf.matmul(W1, images.T)+b1)).eval()
 
   return features
 
